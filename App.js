@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+// Importation des écrans
+import HomeScreen from './src/components/HomeScreen';
+import AlertScreen from './src/components/AlertScreen';
+import BluetoothScreen from './src/components/BluetoothScreen';
+import MapScreen from './src/components/MapScreen';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Accueil' }} />
+        <Stack.Screen name="AlertScreen" component={AlertScreen} options={{ title: 'Alerte' }} />
+        <Stack.Screen name="BluetoothScreen" component={BluetoothScreen} options={{ title: 'Bluetooth' }} />
+        <Stack.Screen name="MapScreen" component={MapScreen} options={{ title: 'Carte' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
